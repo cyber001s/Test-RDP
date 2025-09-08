@@ -8,7 +8,7 @@ services:
       PASSWORD: "cyber@123"     # optional login password
       RAM_SIZE: "6G"
       CPU_CORES: "4"
-      DISK_SIZE: "40G"          # main C: drive
+      DISK_SIZE: "100G"          # main C: drive
       DISK2_SIZE: "100G"        # second D: drive
     devices:
       - /dev/kvm
