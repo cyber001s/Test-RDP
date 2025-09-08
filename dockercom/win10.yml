@@ -1,26 +1,27 @@
+version: "3.9"
+
 services:
   windows:
     image: dockurr/windows
     container_name: windows
     environment:
       VERSION: "10"
-      USERNAME: "cyber"         # optional login user
-      PASSWORD: "cyber@123"     # optional login password
+      USERNAME: "cyber"          # login user
+      PASSWORD: "cyber@123"      # login password
       RAM_SIZE: "6G"
       CPU_CORES: "4"
-      DISK_SIZE: "80G"          # main C: drive
-        #DISK2_SIZE: "50G"        # second D: drive
+      DISK_SIZE: "80G"            # main C: drive
+      #DISK2_SIZE: "50G"          # optional D: drive
     devices:
       - /dev/kvm
       - /dev/net/tun
     cap_add:
       - NET_ADMIN
     ports:
-      - "8006:8006"
-      - "3389:3389/tcp"
-      - "3389:3389/udp"
+      - "3389:3389/tcp"           # RDP port
+      - "3389:3389/udp"           # optional RDP UDP
     volumes:
-      - /tmp/windows:/storage      # persistent storage for VM
-      - /tmp/data:/data            # extra host folder mounted as shared drive
+      - /tmp/windows:/storage     # persistent VM storage
+      - /tmp/data:/data           # optional shared folder
     restart: always
     stop_grace_period: 2m
