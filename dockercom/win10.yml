@@ -4,12 +4,12 @@ services:
     container_name: windows
     environment:
       VERSION: "10"
-      USERNAME: "MASTER"
-      PASSWORD: "admin@123"
-      RAM_SIZE: "4G"
-      CPU_CORES: "2"
-      DISK_SIZE: "20G"
-      #DISK2_SIZE: "100G"
+      USERNAME: "cyber"         # optional login user
+      PASSWORD: "cyber@123"     # optional login password
+      RAM_SIZE: "6G"
+      CPU_CORES: "4"
+      DISK_SIZE: "80G"          # main C: drive
+        #DISK2_SIZE: "50G"        # second D: drive
     devices:
       - /dev/kvm
       - /dev/net/tun
@@ -19,5 +19,8 @@ services:
       - "8006:8006"
       - "3389:3389/tcp"
       - "3389:3389/udp"
-      - "51820:51820/udp"
+    volumes:
+      - /tmp/windows:/storage      # persistent storage for VM
+      - /tmp/data:/data            # extra host folder mounted as shared drive
+    restart: always
     stop_grace_period: 2m
